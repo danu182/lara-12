@@ -1,0 +1,29 @@
+<?php
+
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use App\Services\ApiService;
+use App\services\ApiServices;
+
+class ApiServiceTest extends TestCase
+{
+    public function testFetchData()
+    {
+        $apiService = new ApiServices();
+        $url = '"https://apijkn.bpjs-kesehatan.go.id/vclaim-rest/Peserta/nokartu/0001052288043/tglSEP/2025-04-22"'; // Ganti dengan endpoint yang sesuai
+
+        $response = $apiService->fetchData($url);
+        $this->assertArrayHasKey('data', $response); // Sesuaikan dengan struktur data yang diharapkan
+    }
+
+    public function testDecryptData()
+    {
+        $apiService = new ApiServices();
+        $encryptedData = '...'; // Ganti dengan data terenkripsi yang sesuai
+        $timestamp = '...'; // Ganti dengan timestamp yang sesuai
+
+        $decryptedData = $apiService->decryptData($encryptedData, $timestamp);
+        $this->assertIsArray($decryptedData); // Pastikan hasilnya adalah array
+    }
+}
