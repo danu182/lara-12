@@ -38,7 +38,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                        
                         {{-- peserta --}}
-                        <h6 class="collapse-header">Peserta:</h6>
+                        <h6 class="collapse-header"><strong>Peserta:</strong></h6>
                         <a class="collapse-item" href="{{ route('vclaim.peserta.noKaBPJS') }}">Peserta No.Kartu BPJS</a>
                         <a class="collapse-item" href="{{ route('vclaim.peserta.nikBPJS') }}">Peserta NIK</a>
                        
@@ -52,7 +52,7 @@
                         
                         {{-- prb --}}
                         <h6 class="collapse-header">PRB:</h6>
-                        <a class="collapse-item" href="{{ route('vclaim.prb.NomorSRB') }}">Peserta No.Kartu BPJS</a>
+                        <a class="collapse-item" href="{{ route('vclaim.prb.NomorSRB') }}">Data PRB Nomor SRB</a>
                         
                         {{-- rencana kontrol --}}
                         <h6 class="collapse-header">Rencana Kontrol:</h6>

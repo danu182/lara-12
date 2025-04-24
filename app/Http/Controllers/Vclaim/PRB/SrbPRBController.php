@@ -18,7 +18,7 @@ class SrbPRBController extends Controller
 
     public function index()
     {
-        $title='Fungsi : Pencarian data poli!';
+        $title='Fungsi : Pencarian Data PRB!';
         $label1="Parameter 1 : No. SRB Peserta";
         $label2="Parameter 2 : No. SEP";
         return view('vclaim.PRB.Nomor_SRB.index', compact('title', 'label1','label2'));
