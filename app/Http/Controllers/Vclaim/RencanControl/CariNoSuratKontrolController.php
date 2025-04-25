@@ -46,7 +46,7 @@ class CariNoSuratKontrolController extends Controller
         elseif($data['metaData']['code']==200){
             return view('vclaim.Rencana_Kontrol.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
         }
-        
+        return view('vclaim.Rencana_Kontrol.pesertaNoKa.index');
     }
 
 }

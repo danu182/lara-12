@@ -10,6 +10,7 @@ use App\Http\Controllers\Vclaim\Referensi\FasilitasKesehatanController;
 use App\Http\Controllers\Vclaim\Referensi\ObatGnerikPRBController;
 use App\Http\Controllers\Vclaim\Referensi\PoliController;
 use App\Http\Controllers\Vclaim\RencanControl\CariNoSuratKontrolController;
+use App\Http\Controllers\Vclaim\VclaimController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'vclaim'], function () {
    
+    Route::get('/',[VclaimController::class,'index'])->name('vclaim.index');  
+
     Route::group(['prefix' => 'peserta'], function () {
         Route::get('/pesertaNoKa',[PesertNoKaController::class,'index'])->name('vclaim.peserta.noKaBPJS');  
         Route::post('/pesertaNoKa/hasil',[PesertNoKaController::class,'getData'])->name('vclaim.peserta.noKartuBPJSPost');

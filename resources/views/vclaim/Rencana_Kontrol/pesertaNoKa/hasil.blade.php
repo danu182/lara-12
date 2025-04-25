@@ -33,36 +33,34 @@
                 </div>
         @else
         
-        @forelse ($data['response'] as $key => $val)
-    <div class="col-lg-6">
-        <div class="card mb-4 py-3 border-left-primary">
-            <div class="card-body">
-                <h6 class="m-0 font-weight-bold text-primary">{{ ucfirst($key) }}</h6>
-                @if (is_array($val))
-                    @foreach ($val as $subKey => $item)
-                        @if (is_array($item))
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ ucfirst($subKey) }}</div>
-                            <p><strong>{{ ucfirst($subKey) }}:</strong></p>
-                            <ul>
-                                @foreach ($item as $subItem)
-                                    <li>{{ $subItem }}</li>
-                                @endforeach
-                            </ul>
+            @forelse ($data['response'] as $key => $val)
+            <div class="col-lg-6">
+                <div class="card mb-4 py-3 border-left-primary">
+                    <div class="card-body">
+                        <h6 class="m-0 font-weight-bold text-primary">{{ ucfirst($key) }}</h6>
+                        @if (is_array($val))
+                            @foreach ($val as $subKey => $item)
+                                @if (is_array($item))
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ ucfirst($subKey) }}</div>
+                                    <p><strong>{{ ucfirst($subKey) }}:</strong></p>
+                                    <ul>
+                                        @foreach ($item as $subItemKey => $subItemValue)
+                                            <li><strong>{{ ucfirst($subItemKey) }}:</strong> {{ $subItemValue ?? 'Tidak ada' }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p><strong>{{ ucfirst($subKey) }}:</strong> {{ $item ?? 'Tidak ada' }}</p>
+                                @endif
+                            @endforeach
                         @else
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ ucfirst($subKey) }}</div>
-                            <p><strong>{{ ucfirst($subKey) }}:</strong> {{ $item ?? 'Tidak ada' }}</p>
-                        @endif
-                    @endforeach
-                @else
-                    <p><strong>{{ ucfirst($key) }}:</strong> {{ $val ?? 'Tidak ada' }}</p>
-                @endif      
-            </div>
-        </div>
-    </div>    
-@empty
-    <p>Data tidak ada</p>
-@endforelse
-
+                            <p><strong>{{ ucfirst($key) }}:</strong> {{ $val ?? 'Tidak ada' }}</p>
+                        @endif      
+                    </div>
+                </div>
+            </div>    
+        @empty
+            <p>Data tidak ada</p>
+        @endforelse
 
             
 
