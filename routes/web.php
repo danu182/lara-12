@@ -10,6 +10,7 @@ use App\Http\Controllers\Vclaim\Referensi\FasilitasKesehatanController;
 use App\Http\Controllers\Vclaim\Referensi\ObatGnerikPRBController;
 use App\Http\Controllers\Vclaim\Referensi\PoliController;
 use App\Http\Controllers\Vclaim\RencanControl\CariNoSuratKontrolController;
+use App\Http\Controllers\Vclaim\RencanControl\DataNoSuratKontrolNoKaController;
 use App\Http\Controllers\Vclaim\VclaimController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,10 @@ Route::group(['prefix' => 'vclaim'], function () {
         // Pencarian Data PRB
         Route::get('/CariNoSuratKontrol',[CariNoSuratKontrolController::class,'index'])->name('vclaim.rencanKontrol.CariNoSuratKontrol');  
         Route::post('/CariNoSuratKontrol/hasil',[CariNoSuratKontrolController::class,'getData'])->name('vclaim.rencanKontrol.CariNoSuratKontrolPost');
+        
+        // Pencarian Data Nomor Surat Kontrol Berdasarkan No Kartu
+        Route::get('/CariNoSuratKontrolNoKa',[DataNoSuratKontrolNoKaController::class,'index'])->name('vclaim.rencanKontrol.CariNoSuratKontrolNoKa');  
+        Route::post('/CariNoSuratKontrolNoKa/hasil',[DataNoSuratKontrolNoKaController::class,'getData'])->name('vclaim.rencanKontrol.CariNoSuratKontrolNoKaPost');
     
     });
 
