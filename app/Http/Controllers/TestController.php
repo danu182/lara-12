@@ -47,4 +47,66 @@ class TestController extends Controller
         return view('dataTable');
     }
 
+    public function getDataModel()
+    {
+            
+        $data = [
+            
+            [
+                'id'=>1,
+                'nama'=>"budi",
+            ],
+             [   'id'=>2,
+                'nama'=>"wati",
+            ],
+              [  'id'=>3,
+                'nama'=>"joko",
+        ],
+        [
+                'id'=>4,
+                'nama'=>"maman",
+        ],
+          [      'id'=>5,
+                'nama'=>"bambang",
+            ],
+        ];
+        return response()->json($data);
+
+    }
+
+    public function inputModel()
+    {
+        $data = [
+            
+            [
+                'id'=>1,
+                'nama'=>"budi",
+            ],
+             [   'id'=>2,
+                'nama'=>"wati",
+            ],
+              [  'id'=>3,
+                'nama'=>"joko",
+            ],
+            [
+                'id'=>4,
+                'nama'=>"maman",
+            ],
+            [      'id'=>5,
+                'nama'=>"bambang",
+            ],
+        ];
+        // return response()->json($data);
+
+        
+        // return $data;
+        return view('modal.input', compact('data'));
+    }
+
+
+    public function modalPost(Request $request)
+    {
+        return $request->all();
+    }
+
 }

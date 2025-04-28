@@ -77,3 +77,6 @@ Route::group(['prefix' => 'vclaim'], function () {
 });
 
 // Route::get('/test',[TestController::class,'test']);
+Route::get('api/data',[TestController::class,'getDataModel']);
+Route::get('/inputModel',[TestController::class,'inputModel']);
+Route::post('/modalPost',[TestController::class,'modalPost'])->name('modalPost');
