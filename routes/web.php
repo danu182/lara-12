@@ -11,6 +11,8 @@ use App\Http\Controllers\Vclaim\Referensi\ObatGnerikPRBController;
 use App\Http\Controllers\Vclaim\Referensi\PoliController;
 use App\Http\Controllers\Vclaim\RencanControl\CariNoSuratKontrolController;
 use App\Http\Controllers\Vclaim\RencanControl\DataNoSuratKontrolNoKaController;
+use App\Http\Controllers\Vclaim\Sep\CariSepaController;
+use App\Http\Controllers\Vclaim\Sep\CariSepByNoRujukanController;
 use App\Http\Controllers\Vclaim\VclaimController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +73,18 @@ Route::group(['prefix' => 'vclaim'], function () {
         // Pencarian Data Nomor Surat Kontrol Berdasarkan No Kartu
         Route::get('/CariNoSuratKontrolNoKa',[DataNoSuratKontrolNoKaController::class,'index'])->name('vclaim.rencanKontrol.CariNoSuratKontrolNoKa');  
         Route::post('/CariNoSuratKontrolNoKa/hasil',[DataNoSuratKontrolNoKaController::class,'getData'])->name('vclaim.rencanKontrol.CariNoSuratKontrolNoKaPost');
+    
+    });
+
+    Route::group(['prefix' => 'sep'], function () {
+        
+        // Pencarian Data sep by No sep
+        Route::get('/CariSepNoKa',[CariSepaController::class,'index'])->name('vclaim.sep.noKa');  
+        Route::post('/CariSepNoKa/hasil',[CariSepaController::class,'getData'])->name('vclaim.sep.noKaPost');
+        
+        // Pencarian Data sep by nomer rujuak terakhir
+        Route::get('/CariSepByNoKa',[CariSepByNoRujukanController::class,'index'])->name('vclaim.sep.CariSepByNoKa');  
+        Route::post('/CariSepByNoKa/hasil',[CariSepByNoRujukanController::class,'getData'])->name('vclaim.sep.CariSepByNoKaPost');
     
     });
 

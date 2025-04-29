@@ -57,7 +57,11 @@
                         {{-- rencana kontrol --}}
                         <h6 class="collapse-header">Rencana Kontrol:</h6>
                         <a class="collapse-item" href="{{ route('vclaim.rencanKontrol.CariNoSuratKontrol') }}">Cari Nomor Surat Kontrol</a>
-
+                        
+                        {{-- SEP --}}
+                        <h6 class="collapse-header">SEP:</h6>
+                        <a class="collapse-item" href="{{ route('vclaim.sep.noKa') }}">Cari SEP dengan NO Ka</a>
+                        <a class="collapse-item" href="{{ route('vclaim.sep.CariSepByNoKa') }}">Cari SEP dengan NO Rujukan</a>
 
 
                         {{-- <a class="collapse-item" href="{{ route('vclaim.peserta.nikBPJS') }}">Peserta NIK</a> --}}
