@@ -27,75 +27,46 @@ class ApiAntrianWSBpjs
         try {
 
             $tHeaders= Headers::setHeaders();     
-            $tHeaders['user_key'] = config('vclaim.user_key');
+            $tHeaders['user_key'] = config('vclaim.user_key_antrian');
+            // return $tHeaders;
             Log::info('headers request BPJS', ['tHeaders' => $tHeaders]);
             Log::info('url ws BPJS Fetching data from API', ['url' => $url]);
             
+
+            // $hasil =Http::withHeaders($headers)->get($url);
             $hasil =Http::withHeaders($tHeaders)->get($url);
             Log::info('Response Fetching data from API', ['hasil' => $hasil]);
-            // dd($hasil) ;
-            // return $hasil['metaData']['code'] ;
+            // return $hasil ;
+            // return $hasil['metadata']['list'] ;
             
             
             // return $hasil;
-            if($hasil['metaData']['code']=='200'){
-                // return $hasil;
-                // jika tidak ada error akan megeksekusi perintah di bawah ini
-                $decryptedData= $this->decryptData($hasil['response'], $tHeaders['X-timestamp']);
-            
+            if($hasil['metadata']['code']=='200'){
                 Log::info('hasil dari respons sebelum di decrypted ', ['hasil' => $hasil]);
-                Log::info('hasil dari decryptedData api bpjs', ['decryptedData' => $decryptedData]);
-                $peserta=  $decryptedData;
-                // return $data;
-                $response = [
-                    
-                    'metaData' => [
-                        'code' => '200',
-                        'message' => 'OK',
-                    ],
-                    'response'=>$peserta,
-                ];
-                
-                Log::info('response dari decryptedData api bpjs', ['response' => $response]);
-                return $response;
-            }elseif($hasil['metaData']['code']<>'200'){
+                return $hasil;
+
+            }elseif($hasil['metadata']['code']<>'200'){
                 Log::error('Request failed', ['url' => $url, 'response' => $hasil->body()]);
                 return $hasil;
             }
             else{
                 Log::error('Request failed', ['url' => $url, 'response' => $hasil->body()]);
                 $response = [
-                'metaData' => [
+                'metadata' => [
                     'code' => '500',
                     'message' => 'Request to API failed cek consID secretKey, ce timestamp koneksi internet, coba tanya ke IT BPJS',
                 ],
-            ];
-            return $response;
+                ];
+                return $response;
             }
             
-            // elseif($hasil->failed()){
-            //     Log::error('Request failed', ['url' => $url, 'response' => $hasil->body()]);
-            //     return response()->json(['error' => 'Request to API failed.'], 500);
-            // }
-            
-            // convert the respon to array
-            // $data= $hasil->json(); // Return the data as an array
-          
-            
-            // jika tidak ada error akan megeksekusi perintah di bawah ini
-            // return $this->decryptData($hasil['response'], $tHeaders['X-timestamp']);
-            // $decryptedData = $this->decryptData($hasil['response'], $tHeaders['X-timestamp']);
-            
-            // Log::info('hasil dari decryptedData api bpjs', ['decryptedData' => $decryptedData]);
-            // return $decryptedData;
-
         } catch (\Exception $e) {
             Log::error('Error fetching data', ['message' => $e->getMessage()]);
 
             $response = [
-                'metaData' => [
+                'metadata' => [
                     'code' => '500',
-                    'message' => 'Request to API failed cek consID secretKey, ce timestamp koneksi internet, coba tanya ke IT BPJS',
+                    'message' => 'Request to API failed cek consID secretKey,pesan dari try cathy',
                 ],
             ];
             return $response;

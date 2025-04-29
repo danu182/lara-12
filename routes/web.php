@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Antrian\AntrianController;
+use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerTanggalController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Vclaim\Peserta\PesertaNikController;
 use App\Http\Controllers\Vclaim\Peserta\PesertNoKaController;
@@ -89,6 +91,16 @@ Route::group(['prefix' => 'vclaim'], function () {
     });
 
 });
+
+
+Route::group(['prefix' => 'antrian'], function () {
+
+        Route::get('/',[AntrianController::class,'index'])->name('antrian.index');
+        // Pencarian Data PRB
+        Route::get('/DashboardPerTanggal',[DashboardPerTanggalController::class,'index'])->name('Antrian.DashboardPerTanggal');  
+        Route::post('/DashboardPerTanggal/hasil',[DashboardPerTanggalController::class,'getData'])->name('Antrian.DashboardPerTanggalPost');
+    
+    });
 
 // Route::get('/test',[TestController::class,'test']);
 Route::get('api/data',[TestController::class,'getDataModel']);
