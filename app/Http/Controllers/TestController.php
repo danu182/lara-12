@@ -50,29 +50,38 @@ class TestController extends Controller
     public function getDataModel()
     {
             
-        $data = [
+        // $data = [
             
-            [
-                'id'=>1,
-                'nama'=>"budi",
-            ],
-             [   'id'=>2,
-                'nama'=>"wati",
-            ],
-              [  'id'=>3,
-                'nama'=>"joko",
-        ],
-        [
-                'id'=>4,
-                'nama'=>"maman",
-        ],
-          [      'id'=>5,
-                'nama'=>"bambang",
-            ],
-        ];
-        return response()->json($data);
+        //     [
+        //         'id'=>1,
+        //         'nama'=>"budi",
+        //     ],
+        //      [   'id'=>2,
+        //         'nama'=>"wati",
+        //     ],
+        //       [  'id'=>3,
+        //         'nama'=>"joko",
+        // ],
+        // [
+        //         'id'=>4,
+        //         'nama'=>"maman",
+        // ],
+        //   [      'id'=>5,
+        //         'nama'=>"bambang",
+        //     ],
+        // ];
+
+        // return response()->json($data);
+
+        $url = config('vclaim.baseurl')."RencanaKontrol/ListRencanaKontrol/tglAwal/2025-04-29/tglAkhir/2025-04-29/filter/1"
+;
+        $data = $this->apiService->fetchData($url);
+        return $data; 
 
     }
+
+
+    
 
     public function inputModel()
     {
@@ -107,6 +116,36 @@ class TestController extends Controller
     public function modalPost(Request $request)
     {
         return $request->all();
+    }
+
+    public function getdatabaru()
+    {
+        // return $request->all();
+        
+        // $title = "Cari Nomor Surat Kontrol";
+        // $Parameter1 = $request->parameter1; 
+        // $Parameter2 = $request->parameter2; 
+        // $Parameter2 = $this->apiService->formatDate($request->parameter2);
+        
+        $alamat="{BASE URL}/{Service Name}/RencanaKontrol/ListRencanaKontrol/tglAwal/{parameter 1}/tglAkhir/{parameter 2}/filter/{parameter 3}
+";
+        $url = config('vclaim.baseurl')."RencanaKontrol/ListRencanaKontrol/tglAwal/2025-04-29/tglAkhir/2025-04-29/filter/1"
+;
+        $data = $this->apiService->fetchData($url);
+        return $data;   
+      
+        // Check if there is an error in the response
+        // if($data['metaData']['code'] == 500){
+        //     return view('vclaim.Rencana_Kontrol.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+        // }
+        // elseif ($data['metaData']['code'] <> 200) {
+        //     return view('vclaim.Rencana_Kontrol.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+        // }
+        // elseif($data['metaData']['code']==200){
+        //     return view('vclaim.Rencana_Kontrol.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+        // }
+        // return view('vclaim.Rencana_Kontrol.pesertaNoKa.index');
+    
     }
 
 }

@@ -14,12 +14,16 @@
         <form class="user" method="POST" action="{{ route('modalPost') }}">
             @csrf
             <div class="form-group">
-                <label for="parameter1">ID</label>
-                <input type="number" class="form-control form-control-user" id="inputId" aria-describedby="emailHelp" name="parameter1" placeholder="Parameter 1 : Nomor Kartu">
+                <label for="noSuratKontrol">noSuratKontrol</label>
+                <input type="text" class="form-control form-control-user" id="noSuratKontrol" aria-describedby="emailHelp" name="noSuratKontrol" placeholder="Parameter 1 : Nomor Kartu">
             </div>
             <div class="form-group">
-                <label for="parameter2">Nama</label>
-                <input type="text" class="form-control form-control-user" id="inputNama" aria-describedby="emailHelp" name="parameter2">
+                <label for="noKartu">nomer Kartu</label>
+                <input type="text" class="form-control form-control-user" id="noKartu"  name="noKartu">
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control form-control-user" id="nama" aria-describedby="emailHelp" name="nama">
             </div>
             
             <button class="btn btn-primary btn-user btn-block">Cari</button>
@@ -35,7 +39,7 @@
 
 <!-- Modal start -->
 <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dataModalLabel">Pilih Data</h5>
@@ -48,15 +52,17 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
+                                <th>noSuratKontrol</th>
+                                <th>noKartu</th>
+                                <th>nama</th>
                                 <th>Pilihan</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
+                                <th>noSuratKontrol</th>
+                                <th>noKartu</th>
+                                <th>nama</th>
                                 <th>Pilihan</th>
                             </tr>
                         </tfoot>
@@ -87,40 +93,37 @@
                     method: 'GET',
                     success: function(data) {
                         let rows = '';
-                        data.forEach(function(item) {
+                        data.response.list.forEach(function(item) {
                             rows += `<tr>
-                                        <td>${item.id}</td>
+                                        <td>${item.noSuratKontrol}</td>
+                                        <td>${item.noKartu}</td>
                                         <td>${item.nama}</td>
-                                        <td><button class="btn btn-danger btn-select" data-id="${item.id}" data-name="${item.nama}">Pilih</button></td>
+                                        <td><button class="btn btn-danger btn-select" data-nama="${item.nama}"  data-kontrol="${item.noSuratKontrol}" data-kartu="${item.noKartu}"  ">Pilih</button></td>
                                     </tr>`;
-                        });
-                        $('#dataList').html(rows);
-                        $('#dataTable').DataTable(); // Initialize DataTable after populating data
-                    }
-                });
-            });
-
-            // Pilih data dan set ke input form
+                        })
+                        $('#dataList').html(rows); $('#dataTable').DataTable(); // Initialize DataTable after populating data 
+                        } 
+                    });
+                 }); 
+             // Pilih data dan set ke input form
             $(document).on('click', '.btn-select', function() {
-                const id = $(this).data('id');
-                const name = $(this).data('name');
-                
+                const noKartu = $(this).data('kartu');
+                const noSuratKontrol = $(this).data('kontrol');
+                const nama = $(this).data('nama');;
+             
                 // Set data ke input form
-                $('#inputId').val(id);
-                $('#inputNama').val(name);
+                $('#noSuratKontrol').val(noSuratKontrol);
+                $('#noKartu').val(noKartu);
+                $('#nama').val(nama);
                 
+                if ($.fn.DataTable.isDataTable('#dataTable')) {
+                    $('#dataTable').DataTable().search('').draw(); // Clear any search filters
+                }
                 // Tutup modal
                 $('#dataModal').modal('hide');
             });
 
-        // Clear input fields when modal is closed
-        // $('#dataModal').on('hidden.bs.modal', function() {
-        //     $('#inputId').val('');
-        //     $('#inputNama').val('');
-        //     if (dataTable) {
-        //         dataTable.search('').draw(); // Clear any search filters
-        //     }
-        // });
+           
         
         });
     </script>
