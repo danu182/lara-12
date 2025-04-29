@@ -25,6 +25,10 @@
                 <label for="nama">Nama</label>
                 <input type="text" class="form-control form-control-user" id="nama" aria-describedby="emailHelp" name="nama">
             </div>
+            <div class="form-group">
+                <label for="nama">tglRencanaKontrol</label>
+                <input type="text" class="form-control form-control-user" id="tglRencanaKontrol" aria-describedby="emailHelp" name="tglRencanaKontrol">
+            </div>
             
             <button class="btn btn-primary btn-user btn-block">Cari</button>
 
@@ -55,6 +59,7 @@
                                 <th>noSuratKontrol</th>
                                 <th>noKartu</th>
                                 <th>nama</th>
+                                <th>tglRencanaKontrol</th>
                                 <th>Pilihan</th>
                             </tr>
                         </thead>
@@ -63,6 +68,7 @@
                                 <th>noSuratKontrol</th>
                                 <th>noKartu</th>
                                 <th>nama</th>
+                                <th>tglRencanaKontrol</th>
                                 <th>Pilihan</th>
                             </tr>
                         </tfoot>
@@ -98,7 +104,8 @@
                                         <td>${item.noSuratKontrol}</td>
                                         <td>${item.noKartu}</td>
                                         <td>${item.nama}</td>
-                                        <td><button class="btn btn-danger btn-select" data-nama="${item.nama}"  data-kontrol="${item.noSuratKontrol}" data-kartu="${item.noKartu}"  ">Pilih</button></td>
+                                        <td>${item.tglRencanaKontrol}</td>
+                                        <td><button class="btn btn-danger btn-select" data-tanggal="${item.tglRencanaKontrol}" data-nama="${item.nama}"  data-kontrol="${item.noSuratKontrol}" data-kartu="${item.noKartu}"  ">Pilih</button></td>
                                     </tr>`;
                         })
                         $('#dataList').html(rows); $('#dataTable').DataTable(); // Initialize DataTable after populating data 
@@ -110,11 +117,15 @@
                 const noKartu = $(this).data('kartu');
                 const noSuratKontrol = $(this).data('kontrol');
                 const nama = $(this).data('nama');;
+                const tglRencanaKontrol = $(this).data('tanggal');;
              
+                console.log(tglRencanaKontrol);
+                
                 // Set data ke input form
                 $('#noSuratKontrol').val(noSuratKontrol);
                 $('#noKartu').val(noKartu);
                 $('#nama').val(nama);
+                $('#tglRencanaKontrol').val(tglRencanaKontrol);
                 
                 if ($.fn.DataTable.isDataTable('#dataTable')) {
                     $('#dataTable').DataTable().search('').draw(); // Clear any search filters

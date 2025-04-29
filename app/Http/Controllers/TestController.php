@@ -73,7 +73,7 @@ class TestController extends Controller
 
         // return response()->json($data);
 
-        $url = config('vclaim.baseurl')."RencanaKontrol/ListRencanaKontrol/tglAwal/2025-04-29/tglAkhir/2025-04-29/filter/1"
+        $url = config('vclaim.baseurl')."RencanaKontrol/ListRencanaKontrol/tglAwal/2025-04-29/tglAkhir/2025-04-29/filter/2"
 ;
         $data = $this->apiService->fetchData($url);
         return $data; 
