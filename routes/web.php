@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Antrian\AntrianController;
+use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerBulanController;
 use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerTanggalController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Vclaim\Peserta\PesertaNikController;
@@ -96,9 +97,12 @@ Route::group(['prefix' => 'vclaim'], function () {
 Route::group(['prefix' => 'antrian'], function () {
 
         Route::get('/',[AntrianController::class,'index'])->name('antrian.index');
-        // Pencarian Data PRB
+        // dashboar antrian per tanggal
         Route::get('/DashboardPerTanggal',[DashboardPerTanggalController::class,'index'])->name('Antrian.DashboardPerTanggal');  
         Route::post('/DashboardPerTanggal/hasil',[DashboardPerTanggalController::class,'getData'])->name('Antrian.DashboardPerTanggalPost');
+        // dashboar antrian per bulan
+        Route::get('/DashboardPerBulan',[DashboardPerBulanController::class,'index'])->name('Antrian.DashboardPerBulan');  
+        Route::post('/DashboardPerBulan/hasil',[DashboardPerBulanController::class,'getData'])->name('Antrian.DashboardPerBulanPost');
     
     });
 

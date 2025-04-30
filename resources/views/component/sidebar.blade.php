@@ -83,6 +83,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">WS BPJS:</h6>
                         <a class="collapse-item" href="{{ route('Antrian.DashboardPerTanggal') }}">Dashboard Antrian Per Tanggal</a>
+                        <a class="collapse-item" href="{{ route('Antrian.DashboardPerBulan') }}">Dashboard Antrian Per Bulan</a>
                         
                         
                         

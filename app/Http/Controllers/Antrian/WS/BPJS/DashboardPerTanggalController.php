@@ -36,19 +36,27 @@ class DashboardPerTanggalController extends Controller
         
         $alamat="referensi/diagnosa/".$Parameter1;
         $url = config('vclaim.baseurlAntrian')."dashboard/waktutunggu/tanggal/".$Parameter1."/waktu/".$Parameter2;
-        $data = $this->apiService->fetchData($url);
+        $data =collect(  $this->apiService->fetchData($url)->json());
         // return $data;   
       
-        // Check if there is an error in the response
-        if($data['metadata']['code'] == 500){
-            return view('antrian.wS.bpjs.dashboardPerTanggal.Diagnosa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+        try{
+            // Check if there is an error in the response
+            if($data['metadata']['code'] == 500){
+                return view('antrian.wS.bpjs.dashboardPerTanggal.Diagnosa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+            }
+            elseif ($data['metadata']['code'] <> 200) {
+                return view('antrian.wS.bpjs.dashboardPerTanggal.Diagnosa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+            }
+            elseif($data['metadata']['code']==200){
+                // $label= $data->keys();
+                // $datas= $data['response']['list']->value();
+
+                // return $data;
+                return view('antrian.wS.bpjs.dashboardPerTanggal.Diagnosa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+            }
         }
-        elseif ($data['metadata']['code'] <> 200) {
-            return view('antrian.wS.bpjs.dashboardPerTanggal.Diagnosa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
-        }
-        elseif($data['metadata']['code']==200){
-            // return $data;
-            return view('antrian.wS.bpjs.dashboardPerTanggal.Diagnosa.hasil', compact('data','Parameter1','Parameter2','title','alamat'));
+        catch (\Exception $e) {
+            return redirect()->route('Antrian.DashboardPerTanggal');
         }
         
     }
