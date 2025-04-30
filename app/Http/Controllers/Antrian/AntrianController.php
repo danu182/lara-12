@@ -11,10 +11,11 @@ class AntrianController extends Controller
     public function index()
     {
         try{
+            $baseUrl=config('vclaim.baseurlAntrian');
             $data=Headers::setHeaders();
             $data['user_key']=config('vclaim.user_key_antrian');
             // return $data;
-            return view('vclaim.index', compact('data'));
+            return view('vclaim.index', compact('data','baseUrl'));
 
         }
         catch (\Exception $e){

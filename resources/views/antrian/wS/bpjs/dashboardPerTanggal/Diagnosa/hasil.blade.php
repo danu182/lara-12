@@ -48,12 +48,12 @@
                         <th>tanggal</th>
                         <th>nmppk</th>
                         <th>namapoli</th>
-                        <th>Waktu tunggu admisi dalam detik</th>
-                        <th>Waktu layan admisi dalam detik</th>
-                        <th>Waktu tunggu poli dalam detik</th>
-                        <th>Waktu layan poli dalam detik</th>
-                        <th>Waktu tunggu farmasi dalam detik</th>
-                        <th>Waktu layan farmasi dalam detik</th>
+                        <th>AVG Waktu tunggu admisi dalam detik</th>
+                        <th>AVG Waktu layan admisi dalam detik</th>
+                        <th>AVG Waktu tunggu poli dalam detik</th>
+                        <th>AVG Waktu layan poli dalam detik</th>
+                        <th>AVG Waktu tunggu farmasi dalam detik</th>
+                        <th>AVG Waktu layan farmasi dalam detik</th>
                         <th>jumlah_antrean</th>
                     </tr>
                 </thead>
@@ -64,12 +64,12 @@
                         <th>tanggal</th>
                         <th>nmppk</th>
                         <th>namapoli</th>
-                        <th>Waktu tunggu admisi dalam detik</th>
-                        <th>Waktu layan admisi dalam detik</th>
-                        <th>Waktu tunggu poli dalam detik</th>
-                        <th>Waktu layan poli dalam detik</th>
-                        <th>Waktu tunggu farmasi dalam detik</th>
-                        <th>Waktu layan farmasi dalam detik</th>
+                        <th>AVG Waktu tunggu admisi dalam detik</th>
+                        <th>AVG Waktu layan admisi dalam detik</th>
+                        <th>AVG Waktu tunggu poli dalam detik</th>
+                        <th>AVG Waktu layan poli dalam detik</th>
+                        <th>AVG Waktu tunggu farmasi dalam detik</th>
+                        <th>AVG Waktu layan farmasi dalam detik</th>
                         <th>jumlah_antrean</th>
                     </tr>
                 </tfoot>
@@ -101,6 +101,9 @@
 
 
 <div class="card-body">
+    <div class="card-header py-3">
+        <h1 class="h3 mb-2 text-gray-800"> Cart {{ $title }}</h1>
+    </div>
     <canvas id="myChart" width="400" height="200"></canvas>
 </div>
 
@@ -110,8 +113,10 @@
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('js/demo/datatables-demo.js')}}"></script>
 
-    <script>
-        const data = @json($data['response']['list']);
+    @if($data['metadata']['code']==200)
+    {
+        <script>
+            const data = @json($data['response']['list']);
         
         const labels = data.map(item => item.namapoli);
         const avgWaktuTask1 = data.map(item => item.avg_waktu_task1);
@@ -128,21 +133,21 @@
                 labels: labels,
                 datasets: [
                     {
-                        label: 'AVG Waktu tunggu admisi dalam detik',
+                        label: 'Avg Waktu tunggu admisi dalam detik',
                         data: avgWaktuTask1,
                         backgroundColor: 'rgba(236, 11, 140, 0.1)',
                         borderColor: 'rgba(236, 11, 140, 0.1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Waktu layan admisi dalam detik',
+                        label: 'Avg Waktu layan admisi dalam detik',
                         data: avgWaktuTask2,
                         backgroundColor: 'rgba(255, 0, 0, 1)',
                         borderColor: 'rgba(255, 0, 0, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Waktu tunggu poli dalam detik',
+                        label: 'Avg Waktu tunggu poli dalam detik',
                         data: avgWaktuTask3,
                         backgroundColor: 'rgba(3, 0, 12, 1) ',
                         borderColor: 'rgba(3, 0, 12, 1) ',
@@ -150,37 +155,52 @@
                     },
                     {
                         label: 'Avg Waktu layan poli dalam detik',
-                        data: avgWaktuTask3,
+                        data: avgWaktuTask4,
                         backgroundColor: 'rgba(236, 11, 90, 0.8)',
                         borderColor: 'rgba(236, 11, 90, 0.8)',
                         borderWidth: 1
                     },
                     {
                         label: 'Avg Waktu tunggu farmasi dalam detik',
-                        data: avgWaktuTask3,
+                        data: avgWaktuTask5,
                         backgroundColor: 'rgba(11, 236, 96, 0.8)',
                         borderColor: 'rgba(11, 236, 96, 0.8)',
                         borderWidth: 1
                     },
                     {
                         label: 'Avg Waktu layan farmasi dalam detik',
-                        data: avgWaktuTask3,
+                        data: avgWaktuTask6,
                         backgroundColor: 'rgba(236, 214, 11, 0.8)',
                         borderColor: 'rgba(236, 214, 11, 0.8)',
                         borderWidth: 1
                     },
                     // Add more datasets as needed
                 ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+            },                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
                     }
-                }
-            }
-        });
-    </script>
+                });
+            // } else{
+            //      console.error('Error: Metadata code is not 200. Code:', $data['metadata']['code']);
+            //     // Optionally, display a message to the user
+            //     document.getElementById('myChart').innerHTML = '<p>Error loading data. Please try again later.</p>';
+            // }
+        </script>
+
+    }@else{
+        <script>
+            console.log($data['metadata']['code']);
+            
+            console.error('Error: Metadata code is not 200. Code:', $data['metadata']['code']);
+            // Optionally, display a message to the user
+            document.getElementById('myChart').innerHTML = '<p>Error loading data. Please try again later.</p>';
+        </script>
+    }
+    @endif
 
 @endpush
 

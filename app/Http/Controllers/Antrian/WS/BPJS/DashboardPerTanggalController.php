@@ -29,12 +29,12 @@ class DashboardPerTanggalController extends Controller
 
         // return $request->all();
 
-        $title = "Hasil pencarian Diangnosa";
-        $Parameter2 = $request->parameter2; 
+        $title = "Dashboard antrian per Tanggal";
         $Parameter1 = $this->apiService->formatDate($request->parameter1);
+        $Parameter2 = $request->parameter2; 
         // return $Parameter1;
         
-        $alamat="referensi/diagnosa/".$Parameter1;
+        $alamat="dashboard/waktutunggu/tanggal/".$Parameter1."/waktu/".$Parameter2;
         $url = config('vclaim.baseurlAntrian')."dashboard/waktutunggu/tanggal/".$Parameter1."/waktu/".$Parameter2;
         $data =collect(  $this->apiService->fetchData($url)->json());
         // return $data;   

@@ -43,33 +43,30 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>kdppk</th>
-                        {{-- <th>waktu_task1</th> --}}
-                        <th>tanggal</th>
+                        <th>kdppk</th>                        <th>tanggal</th>
                         <th>nmppk</th>
                         <th>namapoli</th>
-                        <th>Waktu tunggu admisi dalam detik</th>
-                        <th>Waktu layan admisi dalam detik</th>
-                        <th>Waktu tunggu poli dalam detik</th>
-                        <th>Waktu layan poli dalam detik</th>
-                        <th>Waktu tunggu farmasi dalam detik</th>
-                        <th>Waktu layan farmasi dalam detik</th>
+                        <th>AVG Waktu tunggu admisi dalam detik</th>
+                        <th>AVG Waktu layan admisi dalam detik</th>
+                        <th>AVG Waktu tunggu poli dalam detik</th>
+                        <th>AVG Waktu layan poli dalam detik</th>
+                        <th>AVG Waktu tunggu farmasi dalam detik</th>
+                        <th>AVG Waktu layan farmasi dalam detik</th>
                         <th>jumlah_antrean</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>kdppk</th>
-                        {{-- <th>waktu_task1</th> --}}
                         <th>tanggal</th>
                         <th>nmppk</th>
                         <th>namapoli</th>
-                        <th>Waktu tunggu admisi dalam detik</th>
-                        <th>Waktu layan admisi dalam detik</th>
-                        <th>Waktu tunggu poli dalam detik</th>
-                        <th>Waktu layan poli dalam detik</th>
-                        <th>Waktu tunggu farmasi dalam detik</th>
-                        <th>Waktu layan farmasi dalam detik</th>
+                        <th>AVG Waktu tunggu admisi dalam detik</th>
+                        <th>AVG Waktu layan admisi dalam detik</th>
+                        <th>AVG Waktu tunggu poli dalam detik</th>
+                        <th>AVG Waktu layan poli dalam detik</th>
+                        <th>AVG Waktu tunggu farmasi dalam detik</th>
+                        <th>AVG Waktu layan farmasi dalam detik</th>
                         <th>jumlah_antrean</th>
                     </tr>
                 </tfoot>
@@ -77,7 +74,6 @@
                     @forelse ($data['response']['list'] as $diagnosa)
                     <tr>
                         <td>{{ $diagnosa['kdppk'] }}</td>
-                        {{-- <td>{{ $diagnosa['waktu_task1'] }}</td> --}}
                         <td>{{ $diagnosa['tanggal'] }}</td>
                         <td>{{ $diagnosa['nmppk'] }}</td>
                         <td>{{ $diagnosa['namapoli'] }}</td>
@@ -128,21 +124,21 @@
                 labels: labels,
                 datasets: [
                     {
-                        label: 'AVG Waktu tunggu admisi dalam detik',
+                        label: 'Avg  Waktu tunggu admisi dalam detik',
                         data: avgWaktuTask1,
                         backgroundColor: 'rgba(236, 11, 140, 0.1)',
                         borderColor: 'rgba(236, 11, 140, 0.1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Waktu layan admisi dalam detik',
+                        label: 'Avg Waktu layan admisi dalam detik',
                         data: avgWaktuTask2,
                         backgroundColor: 'rgba(255, 0, 0, 1)',
                         borderColor: 'rgba(255, 0, 0, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Waktu tunggu poli dalam detik',
+                        label: 'Avg Waktu tunggu poli dalam detik',
                         data: avgWaktuTask3,
                         backgroundColor: 'rgba(3, 0, 12, 1) ',
                         borderColor: 'rgba(3, 0, 12, 1) ',
@@ -150,21 +146,21 @@
                     },
                     {
                         label: 'Avg Waktu layan poli dalam detik',
-                        data: avgWaktuTask3,
+                        data: avgWaktuTask4,
                         backgroundColor: 'rgba(236, 11, 90, 0.8)',
                         borderColor: 'rgba(236, 11, 90, 0.8)',
                         borderWidth: 1
                     },
                     {
                         label: 'Avg Waktu tunggu farmasi dalam detik',
-                        data: avgWaktuTask3,
+                        data: avgWaktuTask5,
                         backgroundColor: 'rgba(11, 236, 96, 0.8)',
                         borderColor: 'rgba(11, 236, 96, 0.8)',
                         borderWidth: 1
                     },
                     {
                         label: 'Avg Waktu layan farmasi dalam detik',
-                        data: avgWaktuTask3,
+                        data: avgWaktuTask6,
                         backgroundColor: 'rgba(236, 214, 11, 0.8)',
                         borderColor: 'rgba(236, 214, 11, 0.8)',
                         borderWidth: 1
