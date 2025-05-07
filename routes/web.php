@@ -3,6 +3,7 @@
 use App\Http\Controllers\Antrian\AntrianController;
 use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerBulanController;
 use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerTanggalController;
+use App\Http\Controllers\Aplicare\TempatTidurController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Vclaim\Peserta\PesertaNikController;
 use App\Http\Controllers\Vclaim\Peserta\PesertNoKaController;
@@ -105,6 +106,14 @@ Route::group(['prefix' => 'antrian'], function () {
         Route::post('/DashboardPerBulan/hasil',[DashboardPerBulanController::class,'getData'])->name('Antrian.DashboardPerBulanPost');
     
     });
+
+
+Route::group(['prefix' => 'tempaTidur'], function () {
+
+        Route::get('/',[TempatTidurController::class,'index'])->name('tempaTidur.index');
+        
+    });
+
 
 // Route::get('/test',[TestController::class,'test']);
 Route::get('api/data',[TestController::class,'getDataModel']);

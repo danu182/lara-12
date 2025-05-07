@@ -33,7 +33,7 @@ class ApiServices
             
             $hasil =Http::withHeaders($tHeaders)->get($url);
             Log::info('Response Fetching data from API', ['hasil' => $hasil]);
-            // dd($hasil) ;
+            return $hasil;
             // return $hasil['metaData']['code'] ;
             
             
@@ -116,6 +116,20 @@ class ApiServices
         $decompressedData = LZString::decompressFromEncodedURIComponent($output);
         return json_decode($decompressedData, true);
     }
+
+
+    public function getbed($url)
+    {
+        $tHeaders= Headers::setHeaders();     
+        // $tHeaders['user_key'] = config('vclaim.user_key');
+        Log::info('headers request BPJS', ['tHeaders' => $tHeaders]);
+        Log::info('url ws BPJS Fetching data from API', ['url' => $url]);
+        
+        $hasil =Http::withHeaders($tHeaders)->get($url);
+        Log::info('Response Fetching data from API', ['hasil' => $hasil]);
+        return $hasil;
+            
+    } 
 
 
 }

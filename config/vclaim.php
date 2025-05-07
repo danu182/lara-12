@@ -3,6 +3,7 @@
 return [
     'baseurl' => env('baseurl_vclaim'),
     'baseurlAntrian' => env('baseurl_antrian'),
+    'baseurlAplicare'=>env('baseurl_tt'),
     'consid' => env('consid_vclaim'),
     'secretKey' => env('secretKey_vclaim'),
     'user_key' => env('user_key_vclaim'),
