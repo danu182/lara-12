@@ -10,51 +10,7 @@
 
     
     
-    <div class="row">
-
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md">
-                    
-                    @php
-                        $i=0;
-
-                    @endphp
-
-                    {{-- carousel START --}}
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach($groupedRooms as $kodekelas => $rooms)
-                                @php
-                                    $activeClass = $i === 0 ? 'active' : '';
-                                    $i++;
-                                @endphp
-                                <div class="carousel-item {{ $activeClass }}">
-                                    @foreach($rooms as $room)
-                                        <h1>{{ $kodekelas }}</h1>
-                                        {{-- <img src="https://images.freeimages.com/images/large-previews/355/poppies-2-1334190.jpg" class="d-block w-100" alt="..."> --}}
-                                    @endforeach
-                                </div>
-                            @endforeach
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                    {{-- carousel END --}}
-                </div>
-            </div>
-        </div>
-     
    
-
-        </div>
-    </div>
     
     
     <!-- Content Row -->
