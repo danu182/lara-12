@@ -42,7 +42,7 @@
                                                                 {{ $progressPercent }}%
                                                             </div>
                                                         </div>
-                                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                        <p class="card-text"><small class="text-muted">Last lastupdate {{ $room["lastupdate"] }}</small></p>
                                                     </div>
                                                 </div>
                                             </div>
