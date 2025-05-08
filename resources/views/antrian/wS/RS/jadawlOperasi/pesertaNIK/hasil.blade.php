@@ -80,9 +80,13 @@
                             {{-- {{ $jadwal['jenistindakan'] }} --}}
                         <td>{{ $jadwal['kodepoli'] }}</td>
                         <td>{{ $jadwal['namapoli'] }}</td>
-                        <td>{{ $jadwal['terlaksana'] }}</td>
+                        @if($jadwal['terlaksana']==0)
+                        <td>{{ $jadwal['terlaksana'] }} = belum terlaksana</td>
+                        @else
+                        <td>{{ $jadwal['terlaksana'] }} = terlaksana</td>
+                        @endif
                         <td>{{ $jadwal['nopeserta'] }}</td>
-                        <td>{{ $jadwal['lastupdate'] }}</td>
+                        <td>{{  date("Y-m-d H:i:s", ($jadwal['lastupdate'] / 1000) ) }}</td>
                     </tr> 
                     @empty
                         <p>kosong tidak tersedia</p>
