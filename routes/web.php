@@ -3,6 +3,7 @@
 use App\Http\Controllers\Antrian\AntrianController;
 use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerBulanController;
 use App\Http\Controllers\Antrian\WS\BPJS\DashboardPerTanggalController;
+use App\Http\Controllers\Antrian\WS\RS\JadwalOperasiRSController;
 use App\Http\Controllers\Aplicare\TempatTidurController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Vclaim\Peserta\PesertaNikController;
@@ -111,6 +112,13 @@ Route::group(['prefix' => 'antrian'], function () {
 Route::group(['prefix' => 'tempaTidur'], function () {
 
         Route::get('/',[TempatTidurController::class,'index'])->name('tempaTidur.index');
+        
+    });
+
+Route::group(['prefix' => 'jadwalOperasi'], function () {
+
+        Route::get('/',[JadwalOperasiRSController::class,'index'])->name('jadwalOperasi.index');
+        Route::post('/hasil',[JadwalOperasiRSController::class,'hasil'])->name('jadwalOperasi.hasil');
         
     });
 

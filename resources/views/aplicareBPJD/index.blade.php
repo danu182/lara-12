@@ -15,10 +15,7 @@
     
     <!-- Content Row -->
     <div class="row">
-       
-        
-        
-
+      
         <div class="col-lg">
 
            
@@ -77,8 +74,7 @@
                 </div>
     
         </div>
-                           
-
+      
     </div>
 
 {{-- </div> --}}

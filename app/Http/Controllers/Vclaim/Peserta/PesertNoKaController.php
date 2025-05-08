@@ -35,7 +35,7 @@ class PesertNoKaController extends Controller
             return view('vclaim.peserta.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2'));
         }
         elseif ($data['metaData']['code'] <> 200) {
-            return view('vclaim.peserta.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2'));
+            return view('vclaim.peserta.pesertaNoKa.index', compact('data','Parameter1','Parameter2'));
         }
         elseif($data['metaData']['code']==200){
             return view('vclaim.peserta.pesertaNoKa.hasil', compact('data','Parameter1','Parameter2'));

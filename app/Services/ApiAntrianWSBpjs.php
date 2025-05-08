@@ -8,6 +8,7 @@ use App\Helpers\Headers; // Pastikan Anda memiliki helper Headers
 use DateTime;
 use Illuminate\Support\Facades\Log;
 use LZCompressor\LZString;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class ApiAntrianWSBpjs
 {
@@ -88,5 +89,43 @@ class ApiAntrianWSBpjs
         return json_decode($decompressedData, true);
     }
 
+
+    public function getToken()
+    {
+        // $url="https://antri.rssuciparamita.com/api/BpjsAntrol/GetToken";
+        $url=config('vclaim.baseurl_ws_rs_antrol')."GetToken";
+        $headers=[
+            'x-username'=> config('vclaim.username_antri'),
+            'x-password'=> config('vclaim.password_antri'),
+        ];
+
+        $hasil =Http::withHeaders($headers)->get($url);
+        
+        if($hasil['metadata']['code']==200){
+            return $hasil["response"]["token"];
+        }
+        return "tidak bisa generate token";
+        
+    }
+   
+
+    public function fetchDataAntrian($tanggalawal,$tanggalakhir, $alamat)
+    {
+        $token = $this->getToken();
+        $Header =[
+            'x-token'=> $token,
+            'x-username'=> config('vclaim.username_antri'),
+        ];
+
+        $url=config('vclaim.baseurl_ws_rs_antrol').$alamat;
+
+        $body=[
+            'tanggalawal'=> Headers::formatDate($tanggalawal),
+            'tanggalakhir'=>Headers::formatDate($tanggalakhir),
+        ];
+
+        $response = Http::withHeaders($Header)->post($url, $body);
+        return $response->json();
+    }
 
 }

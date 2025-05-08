@@ -107,6 +107,7 @@
                         <h6 class="collapse-header">BED RS:</h6>
 
                         <a class="collapse-item" href="{{ route('tempaTidur.index') }}">Dashbord BEd RS</a>
+                        <a class="collapse-item" href="{{ route('jadwalOperasi.index') }}">jadwalOperasi</a>
                     
                     </div>
                 </div>

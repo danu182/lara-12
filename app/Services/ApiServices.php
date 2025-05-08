@@ -33,7 +33,7 @@ class ApiServices
             
             $hasil =Http::withHeaders($tHeaders)->get($url);
             Log::info('Response Fetching data from API', ['hasil' => $hasil]);
-            return $hasil;
+            // return $hasil;
             // return $hasil['metaData']['code'] ;
             
             
@@ -72,22 +72,7 @@ class ApiServices
             ];
             return $response;
             }
-            
-            // elseif($hasil->failed()){
-            //     Log::error('Request failed', ['url' => $url, 'response' => $hasil->body()]);
-            //     return response()->json(['error' => 'Request to API failed.'], 500);
-            // }
-            
-            // convert the respon to array
-            // $data= $hasil->json(); // Return the data as an array
-          
-            
-            // jika tidak ada error akan megeksekusi perintah di bawah ini
-            // return $this->decryptData($hasil['response'], $tHeaders['X-timestamp']);
-            // $decryptedData = $this->decryptData($hasil['response'], $tHeaders['X-timestamp']);
-            
-            // Log::info('hasil dari decryptedData api bpjs', ['decryptedData' => $decryptedData]);
-            // return $decryptedData;
+
 
         } catch (\Exception $e) {
             Log::error('Error fetching data', ['message' => $e->getMessage()]);

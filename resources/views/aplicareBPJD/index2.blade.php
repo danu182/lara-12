@@ -66,6 +66,69 @@
         <!-- Carousel end -->
     </div>
 
+    
+    <!-- Content Row -->
+    <div class="row">
+      
+        <div class="col-lg">
+
+           
+            <!-- Basic Card Example -->
+           <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    @foreach($groupedRooms as $kodekelas => $rooms)
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">{{ $kodekelas }}</h1>
+                        </div> 
+                        <div class="row">
+
+                        
+                            {{-- {{ $item['koderuang'] }} --}}
+                            <!--    tasks Card Example start -->
+                            @foreach($rooms as $room)
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{{ $room['namaruang'] }}
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">tersedia = {{ $room['tersedia'] }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">kapasitas = {{ $room['kapasitas'] }}</div>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="col-auto"> --}}
+                                                        <p class="card-text"><small class="text-muted">Last lastupdate {{ $room["lastupdate"] }}</small></p>
+                                                    {{-- </div> --}}
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-bed fa-2x text-gray-300"></i>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            <!--    tasks Card Example end -->
+                            
+                            
+                        </div>
+                    @endforeach
+
+                </div>
+    
+        </div>
+      
+    </div>
+
 @endsection
 
 @push('styles')

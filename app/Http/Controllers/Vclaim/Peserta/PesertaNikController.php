@@ -37,7 +37,7 @@ class PesertaNikController extends Controller
             return view('vclaim.peserta.pesertaNIK.hasil', compact('data','Parameter1','Parameter2','alamat'));
         }
         elseif ($data['metaData']['code'] <> 200) {
-            return view('vclaim.peserta.pesertaNIK.hasil', compact('data','Parameter1','Parameter2','alamat'));
+            return view('vclaim.peserta.pesertaNIK.index', compact('data','Parameter1','Parameter2','alamat'));
         }
         elseif($data['metaData']['code']==200){
             return view('vclaim.peserta.pesertaNIK.hasil', compact('data','Parameter1','Parameter2','alamat'));
