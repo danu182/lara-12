@@ -66,9 +66,18 @@
                 <tbody>
                     @forelse ($data['response']['list'] as $jadwal)
                     <tr>
-                        <td>{{ $jadwal['kodebooking'] }}</td>
+                        @if ($jadwal['kodebooking'])
+                            <td>{{ $jadwal['kodebooking'] }}</td>
+                        @else
+                            <td class="text-center bg-warning">{{ $jadwal['kodebooking'] }}</td>
+                        @endif
                         <td>{{ $jadwal['tanggaloperasi'] }}</td>
-                        <td>{{ $jadwal['jenistindakan'] }}</td>
+                        @if ($jadwal['jenistindakan'] <>"")
+                            <td>{{ $jadwal['jenistindakan'] }} </td>
+                        @else
+                            <td class="text-center bg-danger" >{{ $jadwal['jenistindakan'] }} </td>
+                        @endif
+                            {{-- {{ $jadwal['jenistindakan'] }} --}}
                         <td>{{ $jadwal['kodepoli'] }}</td>
                         <td>{{ $jadwal['namapoli'] }}</td>
                         <td>{{ $jadwal['terlaksana'] }}</td>
